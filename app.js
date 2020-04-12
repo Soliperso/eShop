@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const productRoutes = require('./routes/product')
+
 // Connect Mongoose to the DB
 mongoose.connect("mongodb://localhost:27017/dz_eShop", {
   useNewUrlParser: true,
@@ -23,6 +25,10 @@ app.use(express.static(`${__dirname}/public`))
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+
+
+// Middlewares 
+app.use(productRoutes)
 
 // Listening to the server on port 3000
 const port = process.env.PORT || 3000;
